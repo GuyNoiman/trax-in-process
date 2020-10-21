@@ -6,7 +6,7 @@ app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }))
 app.use(bodyParser.json())
 const jsonParser = bodyParser.json()
-const PORT = 3000;
+const PORT = 3000
 app.listen(PORT, () => console.log(`Express server currently running on port ${PORT}`))
 const test = require('./test')
 
@@ -42,11 +42,3 @@ app.get('/searchName', (req, res) => {
     if (getContacts) return res.status(200).send(getContacts)
     return res.status(500).send('user name does not exist')
 })
-
-
-
-
-
-
-
-
