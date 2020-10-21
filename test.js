@@ -1,8 +1,7 @@
-const fetch = require('node-fetch');
-const URL = "http://localhost:3000";
-const success = "OK";
-const fail = "FAILURE";
-// import {contacts} from 'index.js';
+const fetch = require('node-fetch')
+const URL = "http://localhost:3000"
+const success = "OK"
+const fail = "FAILURE"
 
 const testUser1 = {
     name: '',
@@ -71,15 +70,16 @@ async function test() {
         if (ans !== '[]') console.log('getAllContacts-afterAddContact', success)
         else console.log('getAllContacts-afterAddContact', fail)
 
-
-
-
-
+        // searchName
+        const username = 'user1'
+        res = await fetch(URL + `/getAllContacts?name=${username}`, { method: 'GET' })
+        ans = await res.text()
+        if (ans === 'user name does not exist') console.log('searchName', fail)
+        else console.log('searchName', success)
 
     } catch (error) {
-        console.log(fail + " " + error);
+        console.log(fail + ' ' + error)
     }
 }
 
 test();
-    
