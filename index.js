@@ -15,9 +15,15 @@ const test = require('./test');
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+let contacts = [];
+
 app.get('/whos-there', async (req, res) => {
-    return res.status(200).send('Hi Trax! This is Guy Noiman');
-});
+    return res.status(200).send('Hi Trax! This is Guy Noiman')
+})
+
+app.get('/getAllContacts', (req, res) => {
+    return res.status(200).json(contacts)
+})
 
 
 
