@@ -4,6 +4,23 @@ const success = "OK";
 const fail = "FAILURE";
 // import {contacts} from 'index.js';
 
+const testUser1 = {
+    name: '',
+    phoneNumber: '1234447890'
+}
+const testUser2 = {
+    name: 'gguuyy2',
+    phoneNumber: '123'
+}
+const testUser3 = {
+    name: 'gguuyy3',
+    phoneNumber: '123gfhd456'
+}
+const testUser4 = {
+    name: 'gguuyy4',
+    phoneNumber: '1234567890'
+}
+
 
 async function test() {
     try {
@@ -20,7 +37,39 @@ async function test() {
         if (ans === '[]') console.log('getAllContacts', success)
         else console.log('getAllContacts', fail)
 
-        // gelAllContacts - after add contcts 
+        // addContact
+        res = await fetch(URL + `/addContact?name=${testUser4.name}&phoneNumber=${testUser4.phoneNumber}`, { method: 'POST' })
+        ans = await res.text()
+        let res1 = await fetch(URL + `/addContact?name=${testUser3.name}&phoneNumber=${testUser4.phoneNumber}`, { method: 'POST' })
+        let ans1 = await res1.text()
+        if (ans !== ans1) console.log('addContact', success)
+        else console.log('addContact', fail)
+
+        // addContact-phone number validation
+        res = await fetch(URL + `/addContact?name=${testUser2.name}&phoneNumber=${testUser2.phoneNumber}`, { method: 'POST' })
+        ans = await res.text()
+        res1 = await fetch(URL + `/addContact?name=${testUser3.name}&phoneNumber=${testUser3.phoneNumber}`, { method: 'POST' })
+        ans1 = await res1.text()
+        if (ans === 'phone number is not valid' && ans1 === 'phone number is not valid') console.log('addContact-phoneValidation', success)
+        else console.log('addContact-phoneValidation', fail)
+
+        // addContact-name validation
+        res = await fetch(URL + `/addContact?name=${testUser1.name}&phoneNumber=${testUser1.phoneNumber}`, { method: 'POST' })
+        ans = await res.text()
+        if (ans === 'user name must contain at least one charcater') console.log('addContact-nameValidation', success)
+        else console.log('addContact-nameValidation', fail)
+
+        // addContact-duplicate user name
+        res = await fetch(URL + `/addContact?name=${testUser4.name}&phoneNumber=${testUser1.phoneNumber}`, { method: 'POST' })
+        ans = await res.text()
+        if (ans === 'user name is already used, please choose another name') console.log('addContact-duplicatUserName', success)
+        else console.log('addContact-duplicatUserName', fail)
+
+        // gelAllContacts - after add contcts
+        res = await fetch(URL + '/getAllContacts', { method: 'GET' })
+        ans = await res.text()
+        if (ans !== '[]') console.log('getAllContacts-afterAddContact', success)
+        else console.log('getAllContacts-afterAddContact', fail)
 
 
 

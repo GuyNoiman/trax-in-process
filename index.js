@@ -25,6 +25,23 @@ app.get('/getAllContacts', (req, res) => {
     return res.status(200).json(contacts)
 })
 
+app.post('/addContact', jsonParser, (req, res) => {
+    const phoneNumber = req.query.phoneNumber
+    const userName = req.query.name
+    // input validation
+    if (userName.length === 0) return res.status(500).send('user name must contain at least one charcater')
+    if (!(/^\d+$/.test(phoneNumber) && phoneNumber.length === 10)) return res.status(500).send('phone number is not valid')
+    if (contacts.find((user) => user.name === userName)) return res.status(500).send('user name is already used, please choose another name')
+    // if the input validation success
+    const user = {
+      phoneNumber: phoneNumber,
+      name: userName
+    }
+    contacts.push(user)
+    const newLength = (contacts.length).toString()
+    return res.status(200).send(newLength)
+})
+
 
 
 

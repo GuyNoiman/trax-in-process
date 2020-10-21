@@ -1,0 +1,25 @@
+{
+  "name": "trax-in-process-1",
+  "version": "1.0.0",
+  "description": "Trax-home assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GuyNoiman/trax-in-process.git"
+  },
+  "author": "Guy Noiman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/GuyNoiman/trax-in-process/issues"
+  },
+  "homepage": "https://github.com/GuyNoiman/trax-in-process#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.1",
+    "standard": "^14.3.4"
+  }
+}
